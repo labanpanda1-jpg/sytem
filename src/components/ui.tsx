@@ -36,7 +36,7 @@ export function StatCard({
           )}
         </div>
         {icon && (
-          <div className={classNames('flex-shrink-0 w-10 h-10 rounded-xl flex items-center justify-center', colorMap[color])}>
+          <div className={classNames('flex-shrink-0 w-10 h-10 rounded-lg flex items-center justify-center', colorMap[color])}>
             {icon}
           </div>
         )}
@@ -121,7 +121,7 @@ export function Avatar({ name, src, size = 'md' }: { name: string; src?: string;
     return <img src={src} alt={name} className={classNames('rounded-full object-cover', sizes[size])} />;
   }
   return (
-    <div className={classNames('rounded-full bg-primary-100 text-primary-700 font-semibold flex items-center justify-center', sizes[size])}>
+    <div className={classNames('rounded-full bg-primary-50 text-primary-700 font-semibold flex items-center justify-center', sizes[size])}>
       {name.split(' ').filter(Boolean).slice(0, 2).map(n => n[0]?.toUpperCase()).join('')}
     </div>
   );
@@ -130,7 +130,7 @@ export function Avatar({ name, src, size = 'md' }: { name: string; src?: string;
 export function EmptyState({ icon, title, message, action }: { icon?: ReactNode; title: string; message?: string; action?: ReactNode }) {
   return (
     <div className="flex flex-col items-center justify-center py-12 px-4 text-center">
-      {icon && <div className="w-14 h-14 rounded-2xl bg-neutral-100 flex items-center justify-center text-neutral-400 mb-4">{icon}</div>}
+      {icon && <div className="w-14 h-14 rounded-lg bg-neutral-100 flex items-center justify-center text-neutral-400 mb-4">{icon}</div>}
       <h3 className="text-sm font-semibold text-neutral-700">{title}</h3>
       {message && <p className="mt-1 text-sm text-neutral-500 max-w-sm">{message}</p>}
       {action && <div className="mt-4">{action}</div>}
@@ -142,7 +142,7 @@ export function LoadingState({ text = 'Loading...' }: { text?: string }) {
   return (
     <div className="flex items-center justify-center py-12">
       <div className="flex items-center gap-3 text-neutral-400">
-        <div className="w-5 h-5 border-2 border-neutral-200 border-t-primary-600 rounded-full animate-spin" />
+        <div className="w-5 h-5 border-2 border-neutral-200 border-t-primary-500 rounded-full animate-spin" />
         <span className="text-sm">{text}</span>
       </div>
     </div>
@@ -152,7 +152,7 @@ export function LoadingState({ text = 'Loading...' }: { text?: string }) {
 export function ErrorState({ message, onRetry }: { message: string; onRetry?: () => void }) {
   return (
     <div className="flex flex-col items-center justify-center py-12 px-4 text-center">
-      <div className="w-14 h-14 rounded-2xl bg-error-50 flex items-center justify-center text-error-500 mb-4">
+      <div className="w-14 h-14 rounded-lg bg-error-50 flex items-center justify-center text-error-500 mb-4">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
       </div>
       <h3 className="text-sm font-semibold text-neutral-700">Something went wrong</h3>
@@ -189,9 +189,9 @@ export function PageHeader({ title, subtitle, action, icon }: { title: string; s
   return (
     <div className="flex items-start justify-between gap-4 mb-5">
       <div className="flex items-start gap-3 min-w-0">
-        {icon && <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-primary-50 text-primary-700 flex items-center justify-center">{icon}</div>}
+        {icon && <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-primary-50 text-primary-700 flex items-center justify-center">{icon}</div>}
         <div className="min-w-0">
-          <h1 className="text-lg sm:text-xl font-bold text-neutral-900 truncate">{title}</h1>
+          <h1 className="text-lg sm:text-xl font-bold text-neutral-900 tracking-tight truncate">{title}</h1>
           {subtitle && <p className="mt-0.5 text-sm text-neutral-500">{subtitle}</p>}
         </div>
       </div>
@@ -218,9 +218,9 @@ export function Modal({ open, onClose, title, children, size = 'md' }: { open: b
   const sizes = { sm: 'max-w-md', md: 'max-w-lg', lg: 'max-w-2xl', xl: 'max-w-4xl' };
   return (
     <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 animate-fade-in" onClick={onClose}>
-      <div className="absolute inset-0 bg-neutral-900/40 backdrop-blur-sm" />
-      <div className={classNames('relative bg-white rounded-t-2xl sm:rounded-2xl shadow-float w-full max-h-[90vh] overflow-y-auto animate-slide-up', sizes[size])} onClick={e => e.stopPropagation()}>
-        <div className="sticky top-0 bg-white border-b border-neutral-100 px-5 py-4 flex items-center justify-between rounded-t-2xl">
+      <div className="absolute inset-0 bg-neutral-950/50 backdrop-blur-sm" />
+      <div className={classNames('relative bg-white rounded-t-n26-card sm:rounded-n26-card shadow-float-lg w-full max-h-[90vh] overflow-y-auto animate-slide-up', sizes[size])} onClick={e => e.stopPropagation()}>
+        <div className="sticky top-0 bg-white border-b border-neutral-100 px-5 py-4 flex items-center justify-between rounded-t-n26-card">
           <h2 className="text-base font-bold text-neutral-900">{title}</h2>
           <button onClick={onClose} className="btn-ghost p-1.5 -mr-1" aria-label="Close">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
@@ -253,7 +253,7 @@ export function Tabs({ tabs, active, onChange }: { tabs: { key: string; label: s
           onClick={() => onChange(tab.key)}
           className={classNames(
             'px-4 py-2.5 text-sm font-medium whitespace-nowrap border-b-2 -mb-px transition-colors',
-            active === tab.key ? 'border-primary-600 text-primary-700' : 'border-transparent text-neutral-500 hover:text-neutral-700',
+            active === tab.key ? 'border-primary-500 text-primary-700' : 'border-transparent text-neutral-500 hover:text-neutral-700',
           )}
         >
           {tab.label}

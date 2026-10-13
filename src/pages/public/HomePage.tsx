@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import {
   Heart, Users, Wallet, Building2, ShieldCheck,
-  ArrowRight, Calendar, MapPin, Clock,
+  ArrowRight,
 } from 'lucide-react';
 import { Card, Badge, Button, LoadingState, ErrorState, SkeletonCard } from '@/components/ui';
 import { queryKeys } from '@/lib/query';
@@ -47,11 +47,11 @@ export default function HomePage() {
 
   return (
     <div>
-      {/* Hero Section */}
-      <section className="relative min-h-[520px] sm:min-h-[560px] flex items-center">
+      {/* Hero Section — N26 saturated teal band */}
+      <section className="relative min-h-[520px] sm:min-h-[560px] flex items-center bg-primary-500">
         <div className="absolute inset-0">
           <img src={HERO_IMAGE} alt="Healthcare workers" className="h-full w-full object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-r from-primary-900/90 via-primary-800/80 to-primary-700/60" />
+          <div className="absolute inset-0 bg-gradient-to-r from-primary-950/95 via-primary-800/85 to-primary-600/50" />
         </div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
           <div className="max-w-2xl">
@@ -59,7 +59,7 @@ export default function HomePage() {
               <Heart size={14} className="text-primary-200" />
               {settings?.organization_name ?? 'Kirinyaga Healthcare Workers Welfare'}
             </div>
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight tracking-tight">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight tracking-tight text-balance">
               Supporting those who care for our community
             </h1>
             <p className="mt-4 text-base sm:text-lg text-primary-50/90 leading-relaxed max-w-xl">
@@ -67,13 +67,13 @@ export default function HomePage() {
             </p>
             <div className="mt-8 flex flex-col sm:flex-row gap-3">
               <Link to="/public/website/contact">
-                <Button size="lg" className="w-full sm:w-auto bg-white text-primary-800 hover:bg-primary-50">
+                <Button size="lg" className="w-full sm:w-auto bg-white text-primary-700 hover:bg-primary-50">
                   Become a Member
                   <ArrowRight size={18} />
                 </Button>
               </Link>
               <Link to="/login">
-                <Button size="lg" variant="secondary" className="w-full sm:w-auto border-white/30 bg-transparent text-white hover:bg-white/10">
+                <Button size="lg" variant="secondary" className="w-full sm:w-auto border-white/20 bg-transparent text-white hover:bg-white/10">
                   Member Login
                 </Button>
               </Link>
@@ -97,7 +97,7 @@ export default function HomePage() {
               return (
                 <Card key={stat.label} className="p-4 sm:p-5 text-center sm:text-left">
                   <div className="flex items-center justify-center sm:justify-start gap-3">
-                    <div className={classNames('flex-shrink-0 w-10 h-10 rounded-xl flex items-center justify-center', colorMap[stat.color])}>
+                    <div className={classNames('flex-shrink-0 w-10 h-10 rounded-lg flex items-center justify-center', colorMap[stat.color])}>
                       <Icon size={20} />
                     </div>
                     <div className="min-w-0">
@@ -117,8 +117,8 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-20">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
             <div className="order-2 lg:order-1">
-              <Badge className="bg-primary-100 text-primary-700 mb-4">About Us</Badge>
-              <h2 className="text-2xl sm:text-3xl font-bold text-neutral-900 tracking-tight">
+              <Badge className="bg-primary-50 text-primary-700 mb-4">About Us</Badge>
+              <h2 className="text-2xl sm:text-3xl font-bold text-neutral-900 tracking-tight text-balance">
                 A community built on care and mutual support
               </h2>
               <p className="mt-4 text-sm sm:text-base text-neutral-600 leading-relaxed">
@@ -144,13 +144,13 @@ export default function HomePage() {
                   </div>
                 </div>
               </div>
-              <Link to="/public/website/content/about" className="inline-flex items-center gap-1.5 mt-6 text-sm font-semibold text-primary-700 hover:text-primary-800">
+              <Link to="/public/website/content/about" className="inline-flex items-center gap-1.5 mt-6 text-sm font-semibold text-primary-600 hover:text-primary-700">
                 Learn more about us
                 <ArrowRight size={16} />
               </Link>
             </div>
             <div className="order-1 lg:order-2">
-              <div className="relative rounded-2xl overflow-hidden shadow-float">
+              <div className="relative rounded-n26-card overflow-hidden shadow-float">
                 <img src={ABOUT_IMAGE} alt="Healthcare community" className="w-full h-64 sm:h-80 object-cover" />
               </div>
             </div>
@@ -163,10 +163,10 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-20">
           <div className="flex items-end justify-between mb-8">
             <div>
-              <Badge className="bg-primary-100 text-primary-700 mb-3">Latest News</Badge>
+              <Badge className="bg-primary-50 text-primary-700 mb-3">Latest News</Badge>
               <h2 className="text-2xl sm:text-3xl font-bold text-neutral-900 tracking-tight">Featured updates</h2>
             </div>
-            <Link to="/public/website/content/news" className="hidden sm:inline-flex items-center gap-1.5 text-sm font-semibold text-primary-700 hover:text-primary-800">
+            <Link to="/public/website/content/news" className="hidden sm:inline-flex items-center gap-1.5 text-sm font-semibold text-primary-600 hover:text-primary-700">
               View all news
               <ArrowRight size={16} />
             </Link>
@@ -189,13 +189,13 @@ export default function HomePage() {
                       {article.image ? (
                         <img src={article.image} alt={article.title} className="w-full h-40 rounded-lg object-cover mb-3" />
                       ) : (
-                        <Badge className="bg-primary-100 text-primary-700">{article.author}</Badge>
+                        <Badge className="bg-primary-50 text-primary-700">{article.author}</Badge>
                       )}
                     </div>
                     <p className="text-xs text-neutral-400 mb-2">{formatDate(article.date, 'long')}</p>
                     <h3 className="text-base font-semibold text-neutral-900 leading-snug line-clamp-2">{article.title}</h3>
                     <p className="mt-2 text-sm text-neutral-500 line-clamp-3 flex-1">{article.excerpt}</p>
-                    <span className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-primary-700">
+                    <span className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-primary-600">
                       Read more <ArrowRight size={14} />
                     </span>
                   </Card>
@@ -216,10 +216,10 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-20">
           <div className="flex items-end justify-between mb-8">
             <div>
-              <Badge className="bg-secondary-100 text-secondary-700 mb-3">Events</Badge>
+              <Badge className="bg-secondary-50 text-secondary-700 mb-3">Events</Badge>
               <h2 className="text-2xl sm:text-3xl font-bold text-neutral-900 tracking-tight">Upcoming events</h2>
             </div>
-            <Link to="/public/website/content/events" className="hidden sm:inline-flex items-center gap-1.5 text-sm font-semibold text-primary-700 hover:text-primary-800">
+            <Link to="/public/website/content/events" className="hidden sm:inline-flex items-center gap-1.5 text-sm font-semibold text-primary-600 hover:text-primary-700">
               View all events
               <ArrowRight size={16} />
             </Link>
@@ -242,7 +242,7 @@ export default function HomePage() {
                 return (
                   <Card key={event.id} elevated className="p-5">
                     <div className="flex items-start gap-4">
-                      <div className="flex-shrink-0 w-14 h-14 rounded-xl bg-primary-50 text-primary-700 flex flex-col items-center justify-center">
+                      <div className="flex-shrink-0 w-14 h-14 rounded-lg bg-primary-50 text-primary-700 flex flex-col items-center justify-center">
                         <span className="text-lg font-bold leading-none">{day}</span>
                         <span className="text-xs leading-none mt-0.5">{month}</span>
                       </div>
@@ -269,10 +269,10 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-20">
           <div className="flex items-end justify-between mb-8">
             <div>
-              <Badge className="bg-primary-100 text-primary-700 mb-3">Our Team</Badge>
+              <Badge className="bg-primary-50 text-primary-700 mb-3">Our Team</Badge>
               <h2 className="text-2xl sm:text-3xl font-bold text-neutral-900 tracking-tight">Meet the leadership</h2>
             </div>
-            <Link to="/public/website/leadership" className="hidden sm:inline-flex items-center gap-1.5 text-sm font-semibold text-primary-700 hover:text-primary-800">
+            <Link to="/public/website/leadership" className="hidden sm:inline-flex items-center gap-1.5 text-sm font-semibold text-primary-600 hover:text-primary-700">
               View all leaders
               <ArrowRight size={16} />
             </Link>
@@ -290,12 +290,12 @@ export default function HomePage() {
                     {person.photo ? (
                       <img src={person.photo} alt={person.name} className="w-16 h-16 sm:w-20 sm:h-20 rounded-full object-cover mx-auto" />
                     ) : (
-                      <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-primary-100 text-primary-700 font-semibold text-lg flex items-center justify-center mx-auto">
+                      <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-primary-50 text-primary-700 font-semibold text-lg flex items-center justify-center mx-auto">
                         {initials(person.name)}
                       </div>
                     )}
                     <h3 className="mt-3 text-sm sm:text-base font-semibold text-neutral-900 leading-tight">{person.name}</h3>
-                    <p className="mt-1 text-xs sm:text-sm text-primary-700 font-medium">{person.title}</p>
+                    <p className="mt-1 text-xs sm:text-sm text-primary-600 font-medium">{person.title}</p>
                     <p className="mt-2 text-xs text-neutral-500 line-clamp-2">{person.bio}</p>
                   </Card>
                 </Link>
@@ -310,11 +310,11 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="bg-gradient-to-br from-primary-800 to-primary-900">
+      {/* CTA Section — saturated teal */}
+      <section className="bg-primary-500">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-20 text-center">
-          <Heart className="mx-auto text-primary-200" size={40} />
-          <h2 className="mt-4 text-2xl sm:text-3xl lg:text-4xl font-bold text-white tracking-tight">
+          <Heart className="mx-auto text-primary-100" size={40} />
+          <h2 className="mt-4 text-2xl sm:text-3xl lg:text-4xl font-bold text-white tracking-tight text-balance">
             Join our community of healthcare workers
           </h2>
           <p className="mt-3 text-base text-primary-50/80 max-w-2xl mx-auto">
@@ -322,13 +322,13 @@ export default function HomePage() {
           </p>
           <div className="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
             <Link to="/public/website/contact">
-              <Button size="lg" className="bg-white text-primary-800 hover:bg-primary-50">
+              <Button size="lg" className="bg-white text-primary-700 hover:bg-primary-50">
                 Become a Member
                 <ArrowRight size={18} />
               </Button>
             </Link>
             <Link to="/login">
-              <Button size="lg" variant="secondary" className="border-white/30 bg-transparent text-white hover:bg-white/10">
+              <Button size="lg" variant="secondary" className="border-white/20 bg-transparent text-white hover:bg-white/10">
                 Member Login
               </Button>
             </Link>

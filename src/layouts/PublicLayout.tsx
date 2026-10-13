@@ -28,7 +28,7 @@ export function PublicLayout({ children }: { children?: ReactNode }) {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             <Link to="/" className="flex items-center gap-2.5">
-              <div className="w-9 h-9 rounded-xl bg-primary-700 flex items-center justify-center text-white">
+              <div className="w-9 h-9 rounded-lg bg-primary-500 flex items-center justify-center text-white">
                 <Heart size={20} strokeWidth={2.5} />
               </div>
               <div>
@@ -43,7 +43,7 @@ export function PublicLayout({ children }: { children?: ReactNode }) {
                   key={item.path}
                   to={item.path}
                   className={classNames(
-                    'px-3 py-2 rounded-lg text-sm font-medium transition-colors',
+                    'px-3 py-2 rounded-md text-sm font-medium transition-colors',
                     isActive(item.path) ? 'text-primary-700 bg-primary-50' : 'text-neutral-600 hover:text-neutral-900 hover:bg-neutral-50',
                   )}
                 >
@@ -75,7 +75,7 @@ export function PublicLayout({ children }: { children?: ReactNode }) {
                 to={item.path}
                 onClick={() => setMobileOpen(false)}
                 className={classNames(
-                  'block px-3 py-2.5 rounded-lg text-sm font-medium',
+                  'block px-3 py-2.5 rounded-md text-sm font-medium',
                   isActive(item.path) ? 'text-primary-700 bg-primary-50' : 'text-neutral-600 hover:bg-neutral-50',
                 )}
               >
@@ -91,12 +91,12 @@ export function PublicLayout({ children }: { children?: ReactNode }) {
 
       <main className="flex-1">{children || <Outlet />}</main>
 
-      <footer className="bg-neutral-900 text-neutral-400">
+      <footer className="bg-neutral-950 text-neutral-400">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             <div>
               <div className="flex items-center gap-2.5 mb-4">
-                <div className="w-9 h-9 rounded-xl bg-primary-700 flex items-center justify-center text-white">
+                <div className="w-9 h-9 rounded-lg bg-primary-500 flex items-center justify-center text-white">
                   <Heart size={20} strokeWidth={2.5} />
                 </div>
                 <div>
@@ -111,7 +111,7 @@ export function PublicLayout({ children }: { children?: ReactNode }) {
               <ul className="space-y-2">
                 {publicNav.slice(0, 5).map(item => (
                   <li key={item.path}>
-                    <Link to={item.path} className="text-sm hover:text-white transition-colors">{item.label}</Link>
+                    <Link to={item.path} className="text-sm hover:text-primary-400 transition-colors">{item.label}</Link>
                   </li>
                 ))}
               </ul>
@@ -119,9 +119,9 @@ export function PublicLayout({ children }: { children?: ReactNode }) {
             <div>
               <h3 className="text-sm font-semibold text-white mb-3">Resources</h3>
               <ul className="space-y-2">
-                <li><Link to="/public/website/content/documents" className="text-sm hover:text-white transition-colors">Documents</Link></li>
-                <li><Link to="/public/website/contact" className="text-sm hover:text-white transition-colors">Contact Us</Link></li>
-                <li><Link to="/login" className="text-sm hover:text-white transition-colors">Member Portal</Link></li>
+                <li><Link to="/public/website/content/documents" className="text-sm hover:text-primary-400 transition-colors">Documents</Link></li>
+                <li><Link to="/public/website/contact" className="text-sm hover:text-primary-400 transition-colors">Contact Us</Link></li>
+                <li><Link to="/login" className="text-sm hover:text-primary-400 transition-colors">Member Portal</Link></li>
               </ul>
             </div>
             <div>
@@ -132,13 +132,13 @@ export function PublicLayout({ children }: { children?: ReactNode }) {
                 <li className="flex items-center gap-2"><MapPin size={14} className="text-primary-500" /> Kerugoya, Kirinyaga</li>
               </ul>
               <div className="flex gap-3 mt-4">
-                <a href="#" className="text-neutral-500 hover:text-white transition-colors" aria-label="Facebook"><Facebook size={18} /></a>
-                <a href="#" className="text-neutral-500 hover:text-white transition-colors" aria-label="Twitter"><Twitter size={18} /></a>
-                <a href="#" className="text-neutral-500 hover:text-white transition-colors" aria-label="LinkedIn"><Linkedin size={18} /></a>
+                <a href="#" className="text-neutral-500 hover:text-primary-400 transition-colors" aria-label="Facebook"><Facebook size={18} /></a>
+                <a href="#" className="text-neutral-500 hover:text-primary-400 transition-colors" aria-label="Twitter"><Twitter size={18} /></a>
+                <a href="#" className="text-neutral-500 hover:text-primary-400 transition-colors" aria-label="LinkedIn"><Linkedin size={18} /></a>
               </div>
             </div>
           </div>
-          <div className="border-t border-neutral-800 mt-8 pt-6 flex flex-col sm:flex-row items-center justify-between gap-2">
+          <div className="border-t border-white/10 mt-8 pt-6 flex flex-col sm:flex-row items-center justify-between gap-2">
             <p className="text-xs text-neutral-500">© 2026 Kirinyaga Healthcare Workers Welfare. All rights reserved.</p>
             <p className="text-xs text-neutral-500">Supporting those who care for our community</p>
           </div>

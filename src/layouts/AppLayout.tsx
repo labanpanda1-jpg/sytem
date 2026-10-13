@@ -65,71 +65,71 @@ export function AppLayout({ children }: { children?: ReactNode }) {
 
   return (
     <div className="min-h-screen bg-neutral-50 flex">
-      {/* Desktop Sidebar */}
-      <aside className="hidden lg:flex w-64 flex-col bg-white border-r border-neutral-200 fixed inset-y-0 left-0 z-30">
-        <div className="px-5 py-5 border-b border-neutral-100">
+      {/* Desktop Sidebar — N26 dark surface */}
+      <aside className="hidden lg:flex w-64 flex-col bg-neutral-950 fixed inset-y-0 left-0 z-30">
+        <div className="px-5 py-5 border-b border-white/5">
           <Link to="/" className="flex items-center gap-2.5">
-            <div className="w-9 h-9 rounded-xl bg-primary-700 flex items-center justify-center text-white">
+            <div className="w-9 h-9 rounded-lg bg-primary-500 flex items-center justify-center text-white">
               <Heart size={20} strokeWidth={2.5} />
             </div>
             <div>
-              <p className="text-sm font-bold text-neutral-900 leading-tight">KHWWC</p>
-              <p className="text-2xs text-neutral-400 leading-tight">Welfare Management</p>
+              <p className="text-sm font-bold text-white leading-tight">KHWWC</p>
+              <p className="text-2xs text-neutral-500 leading-tight">Welfare Management</p>
             </div>
           </Link>
         </div>
 
-        <div className="px-3 py-3 border-b border-neutral-100">
-          <div className="flex items-center gap-2.5 px-2 py-2 rounded-xl bg-neutral-50">
-            <div className="w-9 h-9 rounded-full bg-primary-100 text-primary-700 font-semibold flex items-center justify-center text-sm flex-shrink-0">
+        <div className="px-3 py-3 border-b border-white/5">
+          <div className="flex items-center gap-2.5 px-2 py-2 rounded-lg bg-white/5">
+            <div className="w-9 h-9 rounded-full bg-primary-500 text-white font-semibold flex items-center justify-center text-sm flex-shrink-0">
               {initials(user.name)}
             </div>
             <div className="min-w-0 flex-1">
-              <p className="text-sm font-semibold text-neutral-800 truncate">{user.name}</p>
-              <p className="text-xs text-neutral-400 truncate">{roleLabels[role]}</p>
+              <p className="text-sm font-semibold text-white truncate">{user.name}</p>
+              <p className="text-xs text-neutral-500 truncate">{roleLabels[role]}</p>
             </div>
           </div>
         </div>
 
-        <nav className="flex-1 overflow-y-auto px-3 py-3 space-y-0.5">
+        <nav className="flex-1 overflow-y-auto px-3 py-3 space-y-0.5 scrollbar-hide">
           {navItems.map((item: NavItem) => (
             <Link
               key={item.path}
               to={item.path}
               className={classNames(
-                'flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-colors',
+                'flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all',
                 isActive(item.path)
-                  ? 'bg-primary-50 text-primary-700'
-                  : 'text-neutral-600 hover:bg-neutral-50 hover:text-neutral-900',
+                  ? 'bg-primary-500 text-white'
+                  : 'text-neutral-400 hover:bg-white/5 hover:text-white',
               )}
             >
-              <NavIcon name={item.icon} size={18} className={classNames(isActive(item.path) ? 'text-primary-600' : 'text-neutral-400')} />
+              <NavIcon name={item.icon} size={18} className={isActive(item.path) ? 'text-white' : 'text-neutral-500'} />
               <span className="truncate">{item.label}</span>
             </Link>
           ))}
         </nav>
 
-        <div className="px-3 py-3 border-t border-neutral-100">
+        <div className="px-3 py-3 border-t border-white/5">
           <div className="relative">
             <button
               onClick={() => setRoleMenuOpen(!roleMenuOpen)}
-              className="w-full flex items-center justify-between gap-2 px-3 py-2.5 rounded-xl text-sm text-neutral-600 hover:bg-neutral-50 transition-colors"
+              className="w-full flex items-center justify-between gap-2 px-3 py-2.5 rounded-lg text-sm text-neutral-400 hover:bg-white/5 hover:text-white transition-colors"
             >
               <span className="flex items-center gap-2">
-                <UserCog size={16} className="text-neutral-400" />
+                <UserCog size={16} className="text-neutral-500" />
                 <span>Switch Role</span>
               </span>
               <ChevronDown size={14} className={classNames('transition-transform', roleMenuOpen && 'rotate-180')} />
             </button>
             {roleMenuOpen && (
-              <div className="absolute bottom-full left-0 right-0 mb-1 bg-white rounded-xl border border-neutral-200 shadow-elevated py-1 max-h-64 overflow-y-auto">
+              <div className="absolute bottom-full left-0 right-0 mb-1 bg-neutral-900 rounded-lg border border-white/10 shadow-float-lg py-1 max-h-64 overflow-y-auto scrollbar-hide">
                 {allRoles.map(r => (
                   <button
                     key={r}
                     onClick={() => handleSwitchRole(r)}
                     className={classNames(
-                      'w-full text-left px-3 py-2 text-sm hover:bg-neutral-50 transition-colors',
-                      r === role ? 'text-primary-700 font-medium' : 'text-neutral-600',
+                      'w-full text-left px-3 py-2 text-sm hover:bg-white/5 transition-colors',
+                      r === role ? 'text-primary-400 font-medium' : 'text-neutral-400',
                     )}
                   >
                     {roleLabels[r]}
@@ -138,7 +138,7 @@ export function AppLayout({ children }: { children?: ReactNode }) {
               </div>
             )}
           </div>
-          <button onClick={handleLogout} className="w-full flex items-center gap-2 px-3 py-2.5 rounded-xl text-sm text-error-600 hover:bg-error-50 transition-colors">
+          <button onClick={handleLogout} className="w-full flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm text-error-400 hover:bg-error-500/10 transition-colors">
             <LogOut size={16} />
             <span>Sign Out</span>
           </button>
@@ -148,30 +148,30 @@ export function AppLayout({ children }: { children?: ReactNode }) {
       {/* Mobile Sidebar Overlay */}
       {sidebarOpen && (
         <div className="lg:hidden fixed inset-0 z-40 animate-fade-in" onClick={() => setSidebarOpen(false)}>
-          <div className="absolute inset-0 bg-neutral-900/40 backdrop-blur-sm" />
-          <aside className="absolute left-0 inset-y-0 w-72 bg-white shadow-float animate-slide-in-right overflow-y-auto" onClick={e => e.stopPropagation()}>
-            <div className="px-5 py-5 border-b border-neutral-100 flex items-center justify-between">
+          <div className="absolute inset-0 bg-neutral-950/60 backdrop-blur-sm" />
+          <aside className="absolute left-0 inset-y-0 w-72 bg-neutral-950 shadow-float-lg overflow-y-auto scrollbar-hide animate-slide-up" onClick={e => e.stopPropagation()}>
+            <div className="px-5 py-5 border-b border-white/5 flex items-center justify-between">
               <Link to="/" className="flex items-center gap-2.5" onClick={() => setSidebarOpen(false)}>
-                <div className="w-9 h-9 rounded-xl bg-primary-700 flex items-center justify-center text-white">
+                <div className="w-9 h-9 rounded-lg bg-primary-500 flex items-center justify-center text-white">
                   <Heart size={20} strokeWidth={2.5} />
                 </div>
                 <div>
-                  <p className="text-sm font-bold text-neutral-900 leading-tight">KHWWC</p>
-                  <p className="text-2xs text-neutral-400 leading-tight">Welfare Management</p>
+                  <p className="text-sm font-bold text-white leading-tight">KHWWC</p>
+                  <p className="text-2xs text-neutral-500 leading-tight">Welfare Management</p>
                 </div>
               </Link>
-              <button onClick={() => setSidebarOpen(false)} className="btn-ghost p-1.5">
+              <button onClick={() => setSidebarOpen(false)} className="text-neutral-400 hover:text-white p-1.5 rounded-lg hover:bg-white/5">
                 <X size={20} />
               </button>
             </div>
-            <div className="px-3 py-3 border-b border-neutral-100">
-              <div className="flex items-center gap-2.5 px-2 py-2 rounded-xl bg-neutral-50">
-                <div className="w-9 h-9 rounded-full bg-primary-100 text-primary-700 font-semibold flex items-center justify-center text-sm">
+            <div className="px-3 py-3 border-b border-white/5">
+              <div className="flex items-center gap-2.5 px-2 py-2 rounded-lg bg-white/5">
+                <div className="w-9 h-9 rounded-full bg-primary-500 text-white font-semibold flex items-center justify-center text-sm">
                   {initials(user.name)}
                 </div>
                 <div className="min-w-0 flex-1">
-                  <p className="text-sm font-semibold text-neutral-800 truncate">{user.name}</p>
-                  <p className="text-xs text-neutral-400 truncate">{roleLabels[role]}</p>
+                  <p className="text-sm font-semibold text-white truncate">{user.name}</p>
+                  <p className="text-xs text-neutral-500 truncate">{roleLabels[role]}</p>
                 </div>
               </div>
             </div>
@@ -182,26 +182,26 @@ export function AppLayout({ children }: { children?: ReactNode }) {
                   to={item.path}
                   onClick={() => setSidebarOpen(false)}
                   className={classNames(
-                    'flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-colors',
-                    isActive(item.path) ? 'bg-primary-50 text-primary-700' : 'text-neutral-600 hover:bg-neutral-50',
+                    'flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all',
+                    isActive(item.path) ? 'bg-primary-500 text-white' : 'text-neutral-400 hover:bg-white/5 hover:text-white',
                   )}
                 >
-                  <NavIcon name={item.icon} size={18} className={isActive(item.path) ? 'text-primary-600' : 'text-neutral-400'} />
+                  <NavIcon name={item.icon} size={18} className={isActive(item.path) ? 'text-white' : 'text-neutral-500'} />
                   <span className="truncate">{item.label}</span>
                 </Link>
               ))}
             </nav>
-            <div className="px-3 py-3 border-t border-neutral-100 space-y-2">
+            <div className="px-3 py-3 border-t border-white/5 space-y-2">
               <div className="px-3">
-                <p className="text-xs font-medium text-neutral-400 mb-2">Switch Role (Demo)</p>
+                <p className="text-xs font-medium text-neutral-500 mb-2">Switch Role (Demo)</p>
                 <div className="flex flex-wrap gap-1.5">
                   {allRoles.map(r => (
                     <button
                       key={r}
                       onClick={() => handleSwitchRole(r)}
                       className={classNames(
-                        'px-2.5 py-1 rounded-lg text-xs font-medium transition-colors',
-                        r === role ? 'bg-primary-600 text-white' : 'bg-neutral-100 text-neutral-600 hover:bg-neutral-200',
+                        'px-2.5 py-1 rounded-md text-xs font-medium transition-colors',
+                        r === role ? 'bg-primary-500 text-white' : 'bg-white/5 text-neutral-400 hover:bg-white/10',
                       )}
                     >
                       {roleLabels[r]}
@@ -209,7 +209,7 @@ export function AppLayout({ children }: { children?: ReactNode }) {
                   ))}
                 </div>
               </div>
-              <button onClick={handleLogout} className="w-full flex items-center gap-2 px-3 py-2.5 rounded-xl text-sm text-error-600 hover:bg-error-50">
+              <button onClick={handleLogout} className="w-full flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm text-error-400 hover:bg-error-500/10">
                 <LogOut size={16} />
                 <span>Sign Out</span>
               </button>
@@ -226,7 +226,7 @@ export function AppLayout({ children }: { children?: ReactNode }) {
             <Menu size={22} />
           </button>
           <Link to="/" className="flex items-center gap-2">
-            <div className="w-7 h-7 rounded-lg bg-primary-700 flex items-center justify-center text-white">
+            <div className="w-7 h-7 rounded-lg bg-primary-500 flex items-center justify-center text-white">
               <Heart size={16} strokeWidth={2.5} />
             </div>
             <span className="text-sm font-bold text-neutral-900">KHWWC</span>
@@ -250,8 +250,8 @@ export function AppLayout({ children }: { children?: ReactNode }) {
                 key={item.path}
                 to={item.path}
                 className={classNames(
-                  'flex flex-col items-center gap-0.5 px-3 py-1.5 rounded-lg transition-colors',
-                  isActive(item.path) ? 'text-primary-700' : 'text-neutral-400',
+                  'flex flex-col items-center gap-0.5 px-3 py-1.5 rounded-md transition-colors',
+                  isActive(item.path) ? 'text-primary-500' : 'text-neutral-400',
                 )}
               >
                 <NavIcon name={item.icon} size={20} />

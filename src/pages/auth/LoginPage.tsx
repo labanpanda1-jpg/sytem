@@ -44,31 +44,31 @@ export default function LoginPage() {
 
   return (
     <div className="min-h-screen flex">
-      {/* Left panel - branding */}
-      <div className="hidden lg:flex lg:w-1/2 bg-primary-800 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary-800 via-primary-700 to-primary-900" />
-        <div className="absolute top-0 right-0 w-96 h-96 bg-primary-600/20 rounded-full blur-3xl -translate-y-1/3 translate-x-1/3" />
-        <div className="absolute bottom-0 left-0 w-80 h-80 bg-secondary-500/10 rounded-full blur-3xl translate-y-1/3" />
+      {/* Left panel — N26 saturated teal brand surface */}
+      <div className="hidden lg:flex lg:w-1/2 bg-primary-500 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-primary-500 via-primary-600 to-primary-800" />
+        <div className="absolute top-0 right-0 w-96 h-96 bg-primary-400/20 rounded-full blur-3xl -translate-y-1/3 translate-x-1/3" />
+        <div className="absolute bottom-0 left-0 w-80 h-80 bg-primary-300/10 rounded-full blur-3xl translate-y-1/3" />
 
         <div className="relative z-10 flex flex-col justify-between p-12 text-white">
           <Link to="/" className="flex items-center gap-3">
-            <div className="w-11 h-11 rounded-xl bg-white/15 backdrop-blur flex items-center justify-center">
+            <div className="w-11 h-11 rounded-lg bg-white/15 backdrop-blur flex items-center justify-center">
               <Heart size={24} strokeWidth={2.5} />
             </div>
             <div>
               <p className="text-lg font-bold leading-tight">KHWWC</p>
-              <p className="text-xs text-primary-200 leading-tight">Kirinyaga Healthcare Workers Welfare</p>
+              <p className="text-xs text-primary-100 leading-tight">Kirinyaga Healthcare Workers Welfare</p>
             </div>
           </Link>
 
           <div className="max-w-md">
-            <h1 className="text-3xl font-bold leading-tight mb-4">Supporting those who care for our community</h1>
-            <p className="text-primary-100 text-base leading-relaxed">
+            <h1 className="text-3xl font-bold leading-tight mb-4 tracking-tight">Supporting those who care for our community</h1>
+            <p className="text-primary-50 text-base leading-relaxed">
               Member portal for contributions, beneficiaries, statements, donations, events, and more. Sign in to access your welfare account.
             </p>
             <div className="mt-8 space-y-3">
               {['Manage contributions and payments', 'Access statements and documents', 'Track beneficiaries and notifications'].map(feature => (
-                <div key={feature} className="flex items-center gap-3 text-sm text-primary-100">
+                <div key={feature} className="flex items-center gap-3 text-sm text-primary-50">
                   <div className="w-5 h-5 rounded-full bg-white/15 flex items-center justify-center flex-shrink-0">
                     <Heart size={12} />
                   </div>
@@ -78,15 +78,15 @@ export default function LoginPage() {
             </div>
           </div>
 
-          <p className="text-xs text-primary-300">© 2026 KHWWC. All rights reserved.</p>
+          <p className="text-xs text-primary-200">© 2026 KHWWC. All rights reserved.</p>
         </div>
       </div>
 
-      {/* Right panel - login form */}
-      <div className="flex-1 flex items-center justify-center px-4 py-8 sm:px-6 lg:px-8 bg-neutral-50">
+      {/* Right panel — login form on clean white */}
+      <div className="flex-1 flex items-center justify-center px-4 py-8 sm:px-6 lg:px-8 bg-white">
         <div className="w-full max-w-sm">
           <div className="lg:hidden flex items-center gap-2.5 mb-8 justify-center">
-            <div className="w-10 h-10 rounded-xl bg-primary-700 flex items-center justify-center text-white">
+            <div className="w-10 h-10 rounded-lg bg-primary-500 flex items-center justify-center text-white">
               <Heart size={22} strokeWidth={2.5} />
             </div>
             <div>
@@ -95,12 +95,12 @@ export default function LoginPage() {
             </div>
           </div>
 
-          <h2 className="text-xl font-bold text-neutral-900">Welcome back</h2>
+          <h2 className="text-xl font-bold text-neutral-900 tracking-tight">Welcome back</h2>
           <p className="mt-1 text-sm text-neutral-500">Sign in to access your account</p>
 
           <form onSubmit={handleSubmit} className="mt-6 space-y-4">
             {error && (
-              <div className="flex items-start gap-2 p-3 rounded-xl bg-error-50 border border-error-200 text-sm text-error-700">
+              <div className="flex items-start gap-2 p-3 rounded-lg bg-error-50 border border-error-200 text-sm text-error-700">
                 <AlertCircle size={16} className="flex-shrink-0 mt-0.5" />
                 <span>{error}</span>
               </div>
@@ -146,14 +146,14 @@ export default function LoginPage() {
             </Button>
           </form>
 
-          <div className="mt-6 p-4 rounded-xl bg-white border border-neutral-200">
+          <div className="mt-6 p-4 rounded-lg bg-neutral-50 border border-neutral-100">
             <p className="text-xs font-medium text-neutral-500 mb-2.5">Demo accounts (any password works):</p>
             <div className="grid grid-cols-2 gap-1.5">
               {demoAccounts.map(acc => (
                 <button
                   key={acc.email}
                   onClick={() => { setEmail(acc.email); setPassword('demo123'); }}
-                  className="text-left px-2.5 py-1.5 rounded-lg text-xs text-neutral-600 hover:bg-neutral-50 hover:text-neutral-900 transition-colors"
+                  className="text-left px-2.5 py-1.5 rounded-md text-xs text-neutral-600 hover:bg-white hover:text-neutral-900 transition-colors"
                 >
                   <p className="font-medium">{acc.role}</p>
                   <p className="text-neutral-400 truncate">{acc.email}</p>
